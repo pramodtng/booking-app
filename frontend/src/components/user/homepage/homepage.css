@@ -1,0 +1,29 @@
+
+img {
+    height: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.homepage {
+    margin-top: 10px;
+}
+
+hr {
+    border: 0;
+    border-top: 4px double #8c8c8c;
+    text-align: center;
+    width: 500px;
+    margin: auto;
+  }
+  hr:after {
+    content: 'List of Bookings';
+    display: inline-block;
+    position: relative;
+    top: -15px;
+    padding: 0 10px;
+    background: #fff;
+    color: #8c8c8c;
+    font-size: 18px;
+  }

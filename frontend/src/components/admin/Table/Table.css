@@ -1,0 +1,18 @@
+.table-container {
+    display: flex;
+    width: 100vw;
+    margin-top: 10px;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+.contains {
+    width: 1000px;
+    background: #fff;
+    border: 1px solid #dddfe2;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+}
