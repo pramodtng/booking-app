@@ -12,11 +12,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 
 const Calendar = () => {
@@ -38,14 +34,11 @@ const Calendar = () => {
     showModal();
     console.log(info);
   };
-
   const [post, setPosts] = useState({
     reason: "",
     room: "",
     urgency: "",
     notes: "",
-    date: "",
-    time: ""
   });
 
   const handleChange = (e) => {
@@ -57,17 +50,15 @@ const Calendar = () => {
   };
 
   const register = () => {
-    const { reason, room, notes, urgency } = post;
+    const { reason, room, notes, urgency,} = post;
     if (reason && room && notes && urgency) {
       axios.post("http://localhost:9002/posts", post).then((res) => {
         alert(res.data.message);
       });
     } else {
-      alert("invalid input");
+      alert("Something's wrong. Try again.");
     }
   };
-
-  
 
   return (
     <>
@@ -117,7 +108,6 @@ const Calendar = () => {
                   name="room"
                   onChange={handleChange}
                   label="Conference Hall 1"
-                  onc
                 />
                 <FormControlLabel
                   value="Conference Hall 2"
@@ -167,28 +157,6 @@ const Calendar = () => {
                 />
               </RadioGroup>
             </FormControl>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <DatePicker
-                name="dateTime"
-                minDate={new Date()}
-                renderInput={(props) => <TextField {...props} />}
-                label="Date"
-                value={post}
-                onChange={(handleChange) => {
-                  setPosts(handleChange);
-                }}
-              />
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
-              <TimePicker
-                label="Time"
-                value={post}
-                onChange={(handleChange) => {
-                  setPosts(handleChange);
-                }}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
             <TextareaAutosize
               aria-label="empty textarea"
               placeholder="Notes"
@@ -199,7 +167,7 @@ const Calendar = () => {
             />
           </Box>
           <div className="logout" onClick={register}>
-            
+            Post
           </div>
         </Form>
       </Modal>

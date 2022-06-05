@@ -3,23 +3,18 @@ import Button from "@material-ui/core/Button";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
+import Logo from "../../../assets/booking.gif";
 import TableDetails from '../Table/Table'
 
 
 const Dashboard = () => {
     return (
-        <><AppBar position="static">
+        <><AppBar  style={{
+          borderBottomRightRadius: "20px",
+          borderBottomLeftRadius: "20px",
+        }} position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            style={{
-              marginRight: 20,
-            }}
-            color="inherit"
-            aria-label="menu"
-          >
-          </IconButton>
+        <img src={Logo} alt="" srcset="" />
           <Typography
             variant="h6"
             style={{

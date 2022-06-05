@@ -26,7 +26,6 @@ const postSchema = new mongoose.Schema({
     room: String,
     notes: String,
     urgency: String,
-    // dateTime: String
 })
 const Post = new mongoose.model("Post", postSchema)
 
@@ -48,7 +47,8 @@ Admin.insertMany([
 
 //Routes
 app.post("/login", (req, res)=> {
-    const { email, password} = req.body
+    const email = req.body.email;
+    const password = req.body.password;
     User.findOne({ email: email}, (_err, user) => {
         if(user){
             if(password === user.password ) {
@@ -129,8 +129,7 @@ app.post("/posts", (req, res)=> {
                 reason,
                 room,
                 notes,
-                urgency
-                // dateTime
+                urgency,
             })
             user.save(err => {
                 if(err) {
@@ -142,6 +141,23 @@ app.post("/posts", (req, res)=> {
         }
     })    
 }) 
+
+
+app.delete('/delete/:id', async(req,res) => {
+    await Post.findByIdAndDelete(req.params.id)
+    
+    try{
+      res.status(204).json({
+          status : 'Success',
+          data : {}
+      })
+    }catch(err){
+        res.status(500).json({
+            status: 'Failed',
+            message : err
+        })
+    }
+})
 
 
 app.listen(9002,() => {

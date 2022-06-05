@@ -37,7 +37,7 @@ const Homepage = ({ setLoginUser }) => {
           <Button
             color="inherit"
             className="button"
-            onClick={() => setLoginUser({})}
+            onClick={() => setLoginUser()}
           >
             Logout
           </Button>
