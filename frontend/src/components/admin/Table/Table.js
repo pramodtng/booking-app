@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const TableDetails = () => {
   const [getuserdata, setUserdata] = useState([]);
   const getdata = async () => {
-    const res = await fetch("http://localhost:9002/posts", {
+    const res = await fetch("http://localhost:5000/posts", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

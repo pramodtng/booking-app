@@ -2,14 +2,12 @@ import './Post.css'
 import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 const Post = () => {
   const [getuserdata, setUserdata] = useState([]);
 //   const [post, setPost] = useState(0)
   const getdata = async () => {
-    const res = await fetch("http://localhost:9002/posts", {
+    const res = await fetch("http://localhost:5000/posts", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -31,9 +29,6 @@ const Post = () => {
     getdata();
   }, []);
 
-  const deletePhone = (id) => {
-    axios.delete(`http://localhost:8080/delete/${id}`)
-  }
 
   return (
     <div className="table-container">

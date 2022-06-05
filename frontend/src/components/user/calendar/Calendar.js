@@ -52,7 +52,7 @@ const Calendar = () => {
   const register = () => {
     const { reason, room, notes, urgency,} = post;
     if (reason && room && notes && urgency) {
-      axios.post("http://localhost:9002/posts", post).then((res) => {
+      axios.post("http://localhost:5000/posts", post).then((res) => {
         alert(res.data.message);
       });
     } else {

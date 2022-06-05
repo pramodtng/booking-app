@@ -29,7 +29,7 @@ const AdminLogin = () => {
   };
 
   const loginAdmin = () => {
-    axios.post("http://localhost:9002/adminlogin", admin).then((res) => {
+    axios.post("http://localhost:5000/adminlogin", admin).then((res) => {
       alert(res.data.message);
       // setAdminLoginUser(res.data.admin);
       history.push("/admindashboard");

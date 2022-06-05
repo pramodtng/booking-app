@@ -30,25 +30,17 @@ const postSchema = new mongoose.Schema({
 const Post = new mongoose.model("Post", postSchema)
 
 
-// const adminSchema = new mongoose.Schema({
-//     username: {
-//         type: String,
-//         required: [true, 'Username is required']
-//     },
-//     password: {
-//         type: String,
-//         required: [true, 'Password is required']
-//     },
-// })
-// const Admin = new mongoose.model("Admin", adminSchema)
-
-// Admin.insertMany([
-//     { username: 'Admin', password: "admin123"},
-// ]).then(function(){
-//     console.log("Data inserted")  // Success
-// }).catch(function(error){
-//     console.log(error)      // Failure
-// });
+const adminSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: [true, 'Username is required']
+    },
+    password: {
+        type: String,
+        required: [true, 'Password is required']
+    },
+})
+const Admin = new mongoose.model("Admin", adminSchema)
 
 
 //Routes
@@ -93,7 +85,7 @@ app.get("/", (_req, res) => {
         res.status(500).json({ err: message });
       });
   });
-app.get("/aadmin", (_req, res) => {
+app.get("/admin", (_req, res) => {
     Admin.find()
       .then((users) => {
         res.status(200).json(users);
@@ -176,6 +168,6 @@ app.delete('/delete/:id', async(req,res) => {
 
 
 app.listen(5000,() => {
-    console.log("BE started at port 9002")
+    console.log("BE started at port 5000")
 })
 

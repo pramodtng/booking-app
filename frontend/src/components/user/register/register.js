@@ -32,7 +32,7 @@ const Register = () => {
   const register = () => {
     const { name, email, password, reEnterPassword } = user;
     if (name && email && password && password === reEnterPassword) {
-      axios.post("http://localhost:9002/register", user).then((res) => {
+      axios.post("http://localhost:5000/register", user).then((res) => {
         alert(res.data.message);
         history.push("/login");
       });
