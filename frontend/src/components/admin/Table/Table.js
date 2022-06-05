@@ -1,8 +1,4 @@
-
 import React, { useEffect, useState } from "react";
-import CreateIcon from "@mui/icons-material/Create";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { NavLink } from "react-router-dom";
 
 const TableDetails = () => {
   const [getuserdata, setUserdata] = useState([]);
@@ -40,6 +36,7 @@ const TableDetails = () => {
               <th scope="col">Room Booked</th>
               <th scope="col">Urgency Level</th>
               <th scope="col">Comments</th>
+              <th scope="col">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -52,6 +49,14 @@ const TableDetails = () => {
                     <td> {value.room} </td>
                     <td> {value.urgency} </td>
                     <td> {value.notes} </td>
+                    <td className="d-flex justify-content-between">
+                        <button className="btn btn-success">
+                          Accept
+                        </button>
+                        <button className="btn btn-primary">
+                            Decline
+                        </button>
+                    </td>
                   </tr>
                 </>
               );

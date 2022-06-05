@@ -30,19 +30,25 @@ const postSchema = new mongoose.Schema({
 const Post = new mongoose.model("Post", postSchema)
 
 
-const adminSchema = new mongoose.Schema({
-    username: String,
-    password: String
-})
-const Admin = new mongoose.model("Admin", adminSchema)
+// const adminSchema = new mongoose.Schema({
+//     username: {
+//         type: String,
+//         required: [true, 'Username is required']
+//     },
+//     password: {
+//         type: String,
+//         required: [true, 'Password is required']
+//     },
+// })
+// const Admin = new mongoose.model("Admin", adminSchema)
 
-Admin.insertMany([
-    { username: 'Admin', password: "admin123"},
-]).then(function(){
-    console.log("Data inserted")  // Success
-}).catch(function(error){
-    console.log(error)      // Failure
-});
+// Admin.insertMany([
+//     { username: 'Admin', password: "admin123"},
+// ]).then(function(){
+//     console.log("Data inserted")  // Success
+// }).catch(function(error){
+//     console.log(error)      // Failure
+// });
 
 
 //Routes
@@ -80,6 +86,15 @@ app.post("/adminlogin", (req, res)=> {
 
 app.get("/", (_req, res) => {
     User.find()
+      .then((users) => {
+        res.status(200).json(users);
+      })
+      .catch((_err) => {
+        res.status(500).json({ err: message });
+      });
+  });
+app.get("/aadmin", (_req, res) => {
+    Admin.find()
       .then((users) => {
         res.status(200).json(users);
       })
@@ -160,7 +175,7 @@ app.delete('/delete/:id', async(req,res) => {
 })
 
 
-app.listen(9002,() => {
+app.listen(5000,() => {
     console.log("BE started at port 9002")
 })
 
