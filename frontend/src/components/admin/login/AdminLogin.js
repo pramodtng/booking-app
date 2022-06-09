@@ -15,14 +15,14 @@ import { useHistory } from "react-router-dom";
 
 const AdminLogin = () => {
   const history = useHistory();
-  const [admin, setUser] = useState({
+  const [admin, setAdmin] = useState({
     username: "",
     password: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser({
+    setAdmin({
       ...admin,
       [name]: value,
     });
@@ -42,7 +42,7 @@ const AdminLogin = () => {
           borderBottomLeftRadius: "20px",
         }} position="static">
         <Toolbar>
-        <img src={Logo} alt="" srcset="" />
+        <img src={Logo} alt="logo"/>
           <Typography
             variant="h5"
             style={{

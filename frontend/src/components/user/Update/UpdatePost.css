@@ -1,18 +1,27 @@
-.table-container {
+/* .container {
     display: flex;
     width: 100vw;
-    margin-top: 20px;
+    height: 100vh;
+    overflow-x: hidden;
+  overflow-y: auto;
     justify-content: center;
+    margin-top: 10px;
+    align-items: center;
     font-family: Arial, sans-serif;
 }
 
-.contains {
-    width: 1200px;
+.login {
+    width: 600px;
     background: #fff;
     border: 1px solid #dddfe2;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
     border-radius: 8px;
     padding: 1rem;
+    font-size: 24px;
     align-items: center;
     text-align: center;
+} */
+
+.container {
+    margin-top: 100px;
 }

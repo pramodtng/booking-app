@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Form } from "antd";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import axios from "axios";
+import "./UpdatePost.css";
+import { Form } from "antd";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import "./Calendar.css";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -17,35 +13,18 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 
-const Calendar = () => {
-  const history = useHistory();
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleSelect = (info) => {
-    showModal();
-    console.log(info);
-  };
-
+const UpdatePost = () => {
+    const history = useHistory();
   const [reason, setReason] = useState("");
   const [room, setValue] = useState("Conference 1");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
-  const [urgency, setUrgency] = React.useState('Urgent');
-  const [notes, setNotes] = React.useState('');
+  const [urgency, setUrgency] = React.useState("Urgent");
+  const [notes, setNotes] = React.useState("");
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -63,7 +42,7 @@ const Calendar = () => {
         time: time,
         urgency: urgency,
         notes: notes,
-        status: "submitted"
+        status: "submitted",
       })
       .then((res) => {
         alert(res.data.message);
@@ -72,34 +51,13 @@ const Calendar = () => {
   };
 
   return (
-    <>
-      <div className="calendar">
-        <FullCalendar
-          plugins={[dayGridPlugin, interactionPlugin]}
-          initialView="dayGridMonth"
-          selectable={true}
-          select={handleSelect}
-          validRange={{
-            start: new Date(),
-            end: null,
-          }}
-          events={[
-            { title: 'event 1', date: '2022-06-08' },
-            { title: 'event 2', date: '2022-06-09' }
-          ]}
-        />
-      </div>
-      <Modal
-        title="Enter the following details for room booking"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+    <div className="container">
+      <div className="login">
         <Form>
           <Box
             component="form"
             sx={{
-              "& > :not(style)": { m: 1, width: "60ch" },
+              "& > :not(style)": { m: 0.5, width: "40ch" },
             }}
             noValidate
             autoComplete="off"
@@ -146,7 +104,7 @@ const Calendar = () => {
               <DatePicker
                 label="Date"
                 value={date}
-                minDate = {new Date()}
+                minDate={new Date()}
                 onChange={(newValue) => {
                   setDate(newValue);
                 }}
@@ -199,16 +157,16 @@ const Calendar = () => {
               }}
               value={notes}
               minRows={4}
-              style={{ width: 450 }}
-            /> 
+              style={{ width: 300 }}
+            />
           </Box>
           <div className="logout" onClick={savePost}>
-            Post
+            Update
           </div>
         </Form>
-      </Modal>
-    </>
+      </div>
+    </div>
   );
 };
 
-export default Calendar;
+export default UpdatePost;

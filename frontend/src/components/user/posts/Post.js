@@ -2,12 +2,16 @@ import './Post.css'
 import React, { useEffect, useState } from "react";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import moment from 'moment'
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+
 
 const Post = () => {
   const [getuserdata, setUserdata] = useState([]);
 //   const [post, setPost] = useState(0)
   const getdata = async () => {
-    const res = await fetch("http://localhost:5000/posts", {
+    const res = await fetch("http://localhost:5000/getposts", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -29,6 +33,10 @@ const Post = () => {
     getdata();
   }, []);
 
+  const deletePost = (id) => {
+    axios.delete(`http://localhost:5000/delete/${id}`)
+  }
+
 
   return (
     <div className="table-container">
@@ -40,6 +48,10 @@ const Post = () => {
               <th scope="col">Reason</th>
               <th scope="col">Room Booked</th>
               <th scope="col">Urgency Level</th>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Notes</th>
+              <th scope="col">Status</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -52,12 +64,14 @@ const Post = () => {
                     <td> {value.reason} </td>
                     <td> {value.room} </td>
                     <td> {value.urgency} </td>
+                    <td> {moment(value.date).format("MM/DD/YYYY")}  </td>
+                    <td> {moment(value.time).format("HH:MM")}  </td>
+                    <td> {value.notes} </td>
+                    <td> {value.status} </td>
                     <td className="d-flex justify-content-between">
-                        <button className="btn btn-primary">
-                          <CreateIcon />
-                        </button>
+                    <NavLink to={`editPost/${value._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></NavLink>
                       <button
-                        className="btn btn-danger" 
+                        className="btn btn-danger" onClick={() =>deletePost(value._id)}
                       >
                         <DeleteOutlineIcon />
                       </button>

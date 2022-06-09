@@ -10,20 +10,21 @@ img {
     margin-top: 10px;
 }
 
-hr {
-    border: 0;
-    border-top: 4px double #8c8c8c;
-    text-align: center;
-    width: 500px;
-    margin: auto;
-  }
-  hr:after {
-    content: 'List of Bookings';
-    display: inline-block;
-    position: relative;
-    top: -15px;
-    padding: 0 10px;
-    background: #fff;
-    color: #8c8c8c;
-    font-size: 18px;
-  }
+hr.hr-15 {
+  border: 0;
+  border-top: 4px double #8c8c8c;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+hr.hr-15:after {
+  content: 'List of Bookings';
+  display: inline-block;
+  position: relative;
+  top: -15px;
+  padding: 0 10px;
+  background: #fff;
+  color: #8c8c8c;
+  font-size: 18px;
+}

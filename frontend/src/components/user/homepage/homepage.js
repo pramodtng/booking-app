@@ -9,8 +9,19 @@ import Button from "@material-ui/core/Button";
 import Calendar from "../calendar/Calendar";
 import Post from "../posts/Post";
 import Logo from "../../../assets/booking.gif";
+import { ReactSession } from 'react-client-session';
+import { useHistory } from "react-router-dom";
 
 const Homepage = ({ setLoginUser }) => {
+  const history = useHistory();
+
+  const logOut = () => {
+    console.log("inside logout")
+    ReactSession.setStoreType("localStorage");
+    ReactSession.remove("userFromStorage");
+    history.go('./login')
+  }
+
   return (
     <div>
       <AppBar style={{
@@ -18,7 +29,7 @@ const Homepage = ({ setLoginUser }) => {
           borderBottomLeftRadius: "20px",
         }} position="static">
         <Toolbar>
-        <img src={Logo} alt="" srcset="" />
+        <img src={Logo} alt="logo"  />
           <Typography
             variant="h6"
             style={{
@@ -37,7 +48,7 @@ const Homepage = ({ setLoginUser }) => {
           <Button
             color="inherit"
             className="button"
-            onClick={() => setLoginUser()}
+            onClick={() => logOut()}
           >
             Logout
           </Button>
@@ -48,7 +59,7 @@ const Homepage = ({ setLoginUser }) => {
           <Calendar />
         </div>
         <br /><br /><br />
-        <hr />
+        <hr class="hr-15"/>
         <section className = "posts" id="posts">
           <Post />
         </section>

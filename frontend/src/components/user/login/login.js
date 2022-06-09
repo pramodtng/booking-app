@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
+import { ReactSession } from 'react-client-session';
 import axios from "axios";
 import Toolbar from "@material-ui/core/Toolbar";
 import AppBar from "@material-ui/core/AppBar";
@@ -30,6 +31,8 @@ const Login = ({ setLoginUser }) => {
   const login = () => {
     axios.post("http://localhost:5000/login", user).then((res) => {
       alert(res.data.message);
+      ReactSession.setStoreType("localStorage");
+      ReactSession.set("userFromStorage", res.data.user);
       setLoginUser(res.data.user);
       history.push("/");
     });

@@ -1,13 +1,14 @@
-.table-container {
+.container {
     display: flex;
     width: 100vw;
-    margin-top: 20px;
+    height: 90vh;
     justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
 }
 
-.contains {
-    width: 1200px;
+.login {
+    width: 400px;
     background: #fff;
     border: 1px solid #dddfe2;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
