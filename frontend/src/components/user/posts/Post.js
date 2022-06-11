@@ -69,7 +69,7 @@ const Post = () => {
                     <td> {value.notes} </td>
                     <td> {value.status} </td>
                     <td className="d-flex justify-content-between">
-                    <NavLink to={`editPost/${value._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></NavLink>
+                    <NavLink to={`post/${value._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></NavLink>
                       <button
                         className="btn btn-danger" onClick={() =>deletePost(value._id)}
                       >

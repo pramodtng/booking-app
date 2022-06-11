@@ -114,6 +114,13 @@ app.get("/getposts", (_req, res) => {
     });
 });
 
+app.get('/getposts/:id', (function(req, res) {
+  let id = req.params.id;
+  Post.findById(id, function(err, todo) {
+      res.json(todo);
+  });
+}));
+
 //Register the user
 app.post("/register", (req, res) => {
   const { name, email, password } = req.body;
@@ -186,21 +193,33 @@ app.route("/update-status/:id").post(function (req, res) {
   });
 });
 
-app.put('/update', async (req, res) => {
-    const status = req.body.status
-    const id = req.body.id
+// app.put('/update', async (req, res) => {
+//     const status = req.body.status
+//     const id = req.body.id
 
-    try {
-        await Post.findById(id, (error, posts) => {
-            posts.status = status
-            posts.save();
-        })
-    }
-    catch(error) {
-        console.log(err);
-    }
+//     try {
+//         await Post.findById(id, (error, posts) => {
+//             posts.status = status
+//             posts.save();
+//         })
+//     }
+//     catch(error) {
+//         console.log(err);
+//     }
     
-})
+// })
+
+// const updatePost = async (req, res) => {
+//   try {
+//     const updatedPost = await Post.updateOne({_id:req.params.id}, {$set:req.body});
+//     res.status(200).json(updatedPost);
+//   }
+//   catch(error) {
+//     res.status(400).json({message: error.message});
+//   }
+// }
+
+// app.post('getposts/:id', updatePost);
 
 //Delete the posts
 app.delete('/delete/:id', async (req, res) => {
@@ -209,6 +228,25 @@ app.delete('/delete/:id', async (req, res) => {
   await Post.findByIdAndRemove(id).exec();
   res.send('Post Deleted')
 })
+
+//Update the post status
+app.patch('/update-status/:id', async (req,res) => {
+  const updatedStatus = await Post.findByIdAndUpdate(req.params.id,req.body,{
+      new : true,
+      runValidators : true
+    })
+  try{
+      res.status(200).json({
+          status : 'Success',
+          data : {
+            updatedStatus
+          }
+        })
+  }catch(err){
+      console.log(err)
+  }
+})
+
 
 app.listen(5000, () => {
   console.log("BE started at port 5000");

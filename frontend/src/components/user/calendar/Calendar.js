@@ -199,6 +199,8 @@ const Calendar = () => {
               }}
               value={notes}
               minRows={4}
+              // minLength = {50}
+              maxLength={50}
               style={{ width: 450 }}
             /> 
           </Box>

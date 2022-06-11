@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import "./UpdatePost.css";
 import { Form } from "antd";
 import Box from "@mui/material/Box";
@@ -13,19 +14,20 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 
 const UpdatePost = () => {
-    const history = useHistory();
+  const history = useHistory();
+  const id = useParams().id
+  console.log(id);
   const [reason, setReason] = useState("");
   const [room, setValue] = useState("Conference 1");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [urgency, setUrgency] = React.useState("Urgent");
   const [notes, setNotes] = React.useState("");
-
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -33,22 +35,35 @@ const UpdatePost = () => {
     setUrgency(event.target.value);
   };
 
-  const savePost = () => {
+  const updatePost = () => {
     axios
-      .post("http://localhost:5000/posts", {
+      .patch(`http://localhost:5000/posts/${id}`, {
         reason: reason,
         room: room,
         date: date,
         time: time,
         urgency: urgency,
         notes: notes,
-        status: "submitted",
+        status: "submitted"
       })
       .then((res) => {
         alert(res.data.message);
         history.push('/')
       });
   };
+
+  useEffect(() => {
+    getPostById()
+  },[])
+  const getPostById = async() => {
+    const response = await axios.get(`http://localhost:5000/getposts/${id}`)
+    setReason(response.data.reason)
+    setValue(response.data.room)
+    setDate(response.data.date)
+    setTime(response.data.time)
+    setUrgency(response.data.urgency)
+    setNotes(response.data.notes)
+  }
 
   return (
     <div className="container">
@@ -160,7 +175,7 @@ const UpdatePost = () => {
               style={{ width: 300 }}
             />
           </Box>
-          <div className="logout" onClick={savePost}>
+          <div className="logout" onClick={updatePost}>
             Update
           </div>
         </Form>

@@ -45,7 +45,7 @@ function App() {
             <Dashboard />
           </Route>
           <Route exact path="/edit/:id" component={Status} />
-          <Route exact path="/editPost/:id" component={UpdatePost} />
+          <Route exact path="/post/:id" component={UpdatePost} />
         </Switch>
       </Router>
     </div>
