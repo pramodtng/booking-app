@@ -16,7 +16,7 @@ const Login = ({ setLoginUser }) => {
   const history = useHistory();
 
   const [user, setUser] = useState({
-    email: "",
+    empID: "",
     password: "",
   });
 
@@ -29,7 +29,7 @@ const Login = ({ setLoginUser }) => {
   };
 
   const login = () => {
-    axios.post("http://localhost:5000/login", user).then((res) => {
+    axios.post("http://localhost:5000/adminlogin", user).then((res) => {
       alert(res.data.message);
       ReactSession.setStoreType("localStorage");
       ReactSession.set("userFromStorage", res.data.user);
@@ -82,8 +82,8 @@ const Login = ({ setLoginUser }) => {
               label="Email"
               variant="outlined"
               type="text"
-              name="email"
-              value={user.email}
+              name="empID"
+              value={user.empID}
               onChange={handleChange}
             />
             <TextField

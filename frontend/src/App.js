@@ -31,10 +31,14 @@ function App() {
               // isloggedIn ? <Homepage setLoginUser={setLoginUser} /> : <Login setLoginUser={setLoginUser}/>
 
             }
+
           </Route>
           <Route path="/login">
             <Login setLoginUser={setLoginUser}/>
           </Route>
+          {/* <Route path="/dashboard">
+            <Homepage />
+          </Route> */}
           <Route path="/register">
             <Register />
           </Route>
