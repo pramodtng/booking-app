@@ -93,16 +93,6 @@ app.get("/", (_req, res) => {
 });
 
 
-// app.get("/admin", (_req, res) => {
-//   Admin.find()
-//     .then((users) => {
-//       res.status(200).json(users);
-//     })
-//     .catch((_err) => {
-//       res.status(500).json({ err: message });
-//     });
-// });
-
 //Get all the posts
 app.get("/getposts", (_req, res) => {
   Post.find()
@@ -193,33 +183,7 @@ app.route("/update-status/:id").post(function (req, res) {
   });
 });
 
-// app.put('/update', async (req, res) => {
-//     const status = req.body.status
-//     const id = req.body.id
 
-//     try {
-//         await Post.findById(id, (error, posts) => {
-//             posts.status = status
-//             posts.save();
-//         })
-//     }
-//     catch(error) {
-//         console.log(err);
-//     }
-    
-// })
-
-// const updatePost = async (req, res) => {
-//   try {
-//     const updatedPost = await Post.updateOne({_id:req.params.id}, {$set:req.body});
-//     res.status(200).json(updatedPost);
-//   }
-//   catch(error) {
-//     res.status(400).json({message: error.message});
-//   }
-// }
-
-// app.post('getposts/:id', updatePost);
 
 //Delete the posts
 app.delete('/delete/:id', async (req, res) => {
@@ -248,6 +212,6 @@ app.patch('/update-status/:id', async (req,res) => {
 })
 
 
-app.listen(5000, () => {
+app.listen(5500, () => {
   console.log("BE started at port 5000");
 });
